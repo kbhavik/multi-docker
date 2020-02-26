@@ -13,8 +13,8 @@ pipeline {
     stage('scripts') {
       steps {
         script {
-          docker run -e "CI=true" bhavik0907/react-test npm test;
-          exit 0
+          sh 'docker run -e "CI=true" bhavik0907/react-test npm test';
+          exit 0;
         }
 
       }
