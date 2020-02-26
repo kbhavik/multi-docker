@@ -13,11 +13,8 @@ pipeline {
     stage('scripts') {
       steps {
         script {
-
           sh docker.image('bhavik0907/react-test').withRun{
-            script: '''
-npm test
-'''
+            sh "npm test"
           }
         }
 
