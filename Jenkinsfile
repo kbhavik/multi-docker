@@ -3,8 +3,9 @@ pipeline {
   stages {
     stage('before_install') {
       steps {
-        
-        docker.build("bhavik0907/react-test", "-f ./client/Dockerfile.dev ./client")
+        script{
+          docker.build("bhavik0907/react-test", "-f ./client/Dockerfile.dev ./client")
+        }
       }
     }
 
