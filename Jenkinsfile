@@ -13,25 +13,23 @@ pipeline {
     stage('scripts') {
       steps {
         script {
-          docker.image('bhavik0907/react-test').withRun("-e CI=true") { c ->
-          sh 'npm test'
+          docker.image('bhavik0907/react-test', 'npm test').withRun("-e CI=true") {}
         }
+
       }
-
     }
-  }
 
-  stage('after_success') {
-    steps {
-      script {
-        sh 'docker build -t bhavik0907/multi-client ./client'
-        sh 'docker build -t bhavik0907/multi-nginx ./nginx'
-        sh 'docker build -t bhavik0907/multi-server./server'
-        sh 'docker build -t bhavik0907/multi-worker ./worker'
+    stage('after_success') {
+      steps {
+        script {
+          sh 'docker build -t bhavik0907/multi-client ./client'
+          sh 'docker build -t bhavik0907/multi-nginx ./nginx'
+          sh 'docker build -t bhavik0907/multi-server./server'
+          sh 'docker build -t bhavik0907/multi-worker ./worker'
+        }
+
       }
-
     }
-  }
 
-}
+  }
 }
