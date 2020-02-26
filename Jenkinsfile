@@ -11,16 +11,20 @@ pipeline {
 
     stage('script') {
       steps {
-        sh 'docker run -e CI=true --name "react-test" bhavik0907/react-test npm test -- --coverage'
+        script{
+          sh 'docker run -e CI=true --name "react-test" bhavik0907/react-test npm test -- --coverage'
+        }
       }
     }
 
     stage('after_success') {
       steps {
-        sh 'docker build -t bhavik0907/multi-client ./client'
-        sh 'docker build -t bhavik0907/multi-nginx ./nginx'
-        sh 'docker build -t bhavik0907/multi-server./server'
-        sh 'docker build -t bhavik0907/multi-worker ./worker'
+        script{
+          sh 'docker build -t bhavik0907/multi-client ./client'
+          sh 'docker build -t bhavik0907/multi-nginx ./nginx'
+          sh 'docker build -t bhavik0907/multi-server./server'
+          sh 'docker build -t bhavik0907/multi-worker ./worker'
+        }
       }
     }
 
