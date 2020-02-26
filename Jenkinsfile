@@ -16,7 +16,7 @@ pipeline {
       }
       steps {
         script {
-          sh 'docker -e run bhavik0907/react-test npm test'
+          sh 'docker run -e bhavik0907/react-test npm test'
         }
 
       }
