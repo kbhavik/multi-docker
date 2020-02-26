@@ -11,11 +11,10 @@ pipeline {
 
     stage('scripts') {
       steps {
-        
-          docker.image('bhavik0907/react-test').withrun("seccomp=$WORKSPACE/client"){
-            sh 'npm test'
+        script{
+          sh 'docker run bhavik0907/react-test npm test'
           }
-        
+        }
       }
     }
 
