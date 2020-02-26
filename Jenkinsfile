@@ -16,7 +16,7 @@ pipeline {
           }
         }
       }
-    }
+    
 
     stage('after_success') {
       steps {
