@@ -14,7 +14,7 @@ pipeline {
       steps {
         script {
           docker.image('bhavik0907/react-test').withRun('--name react-test') {
-            sh './client/npm test'
+            sh 'npm test'
           }
         }
 
