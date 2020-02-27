@@ -1,1 +1,0 @@
-docker run -e CI=true bhavik0907/react-test npm test
