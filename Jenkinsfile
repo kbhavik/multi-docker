@@ -19,10 +19,10 @@ pipeline {
     stage('after_success') {
       steps {
         script {
-          def clientImg = docker.build("bhavik0907/multi-client", "./client")
-          def nginxImg = docker.build("bhavik0907/multi-nginx", "./nginx")
-          def serverImg = docker.build("bhavik0907/multi-server", "./server")
-          def workerImg = docker.build("bhavik0907/multi-worker", "./worker")
+          docker.build("bhavik0907/multi-client", "./client")
+          docker.build("bhavik0907/multi-nginx", "./nginx")
+          docker.build("bhavik0907/multi-server", "./server")
+          docker.build("bhavik0907/multi-worker", "./worker")
         }
 
       }
@@ -32,10 +32,10 @@ pipeline {
       steps {
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'Docker-hub') {
-            clientImg.push()
-            nginxImg.push()
-            serverImg.push()
-            workerImg.push()
+            bhavik0907/multi-client.push()
+            bhavik0907/multi-nginx.push()
+            bhavik0907/multi-server.push()
+            bhavik0907/multi-worker.push()
           }
         }
 
