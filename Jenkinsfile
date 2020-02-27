@@ -19,10 +19,10 @@ pipeline {
     stage('after_success') {
       steps {
         script {
-          sh 'docker build -t bhavik0907/multi-client ./client'
-          sh 'docker build -t bhavik0907/multi-nginx ./nginx'
-          sh 'docker build -t bhavik0907/multi-server./server'
-          sh 'docker build -t bhavik0907/multi-worker ./worker'
+          docker.build("bhavik0907/multi-client", "./client")
+          docker.build("bhavik0907/multi-nginx", "./nginx")
+          docker.build("bhavik0907/multi-server", "./server")
+          docker.build("bhavik0907/multi-worker", "./worker")
         }
 
       }
