@@ -31,7 +31,7 @@ pipeline {
     stage('push_images') {
       steps {
         script {
-          docker.withRegistry('https://hub.docker.com/', 'Docker-hub'){
+          docker.withRegistry('https://hub.docker.com/', 'Docker-hub') {
             clientImg.push()
             nginxImg.push()
             serverImg.push()
