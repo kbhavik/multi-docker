@@ -13,8 +13,7 @@ pipeline {
     stage('scripts') {
       steps {
         script {
-          docker.image('bhavik0907/react-test').inside("-e CI=true") {
-            sh 'cd E:/jenkins/workspace/multi-docker_master/client'
+          docker.image('bhavik0907/react-test').withRun('-e CI=true') {
             sh 'npm test'
           }
         }
