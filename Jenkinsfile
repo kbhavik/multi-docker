@@ -13,7 +13,7 @@ pipeline {
     stage('scripts') {
       steps {
         script {
-          docker.image('bhavik0907/react-test').withRun("-e CI=true") {npm test}
+          docker.image('bhavik0907/react-test').withRun("-e CI=true", '--arg1 npm --arg2 test')
         }
 
       }
