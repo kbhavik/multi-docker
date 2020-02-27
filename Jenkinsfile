@@ -32,10 +32,10 @@ pipeline {
       steps {
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'Docker-hub') {
-            bhavik0907/multi-client.push()
-            bhavik0907/multi-nginx.push()
-            bhavik0907/multi-server.push()
-            bhavik0907/multi-worker.push()
+            'bhavik0907/multi-client'.push()
+            'bhavik0907/multi-nginx'.push()
+            'bhavik0907/multi-server'.push()
+            'bhavik0907/multi-worker'.push()
           }
         }
 
