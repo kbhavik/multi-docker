@@ -12,10 +12,7 @@ pipeline {
 
     stage('scripts') {
       steps {
-        script {
-          sh 'docker run bhavik0907/react-test npm test'
-        }
-
+        bat(script: 'react-test.bat', returnStdout: true, returnStatus: true)
       }
     }
 
