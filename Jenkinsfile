@@ -30,9 +30,14 @@ pipeline {
 
     stage('push_images') {
       steps {
-        sh 'docker.withRegistry(\'https://hub.docker.com/\', \'Docker-hub\')'
+        sh '''docker.withRegistry(\'https://hub.docker.com/\', \'Docker-hub\') {
+clientImg.push()
+nginxImg.push()
+serverImg.push()
+workerImg.push()
+}'''
+        }
       }
-    }
 
+    }
   }
-}
