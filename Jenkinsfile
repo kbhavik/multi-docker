@@ -5,7 +5,7 @@ pipeline {
       steps {
         script {
           docker.build("bhavik0907/react-test", "-f ./client/Dockerfile.dev ./client")
-          docker.image('bhavik0907/react-test').withRun('-e CI=true') {
+          docker.image('bhavik0907/react-test').withRun('--detach=false -e CI=true') {
             sh 'npm test'
           }
         }
