@@ -14,7 +14,7 @@ pipeline {
       steps {
         script {
           docker.image('bhavik0907/react-test').withRun('--name react-test -e CI=true') {
-            sh 'docker exec react-test npm test'
+            sh 'docker exec react-test npm test -- --forceExit'
           }
         }
 
