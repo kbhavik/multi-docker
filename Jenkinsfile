@@ -29,8 +29,8 @@ pipeline {
     }
 
     stage('push_images') {
-      
-        withDockerRegistry([ credentialsId: "Docker-hub", url: "https://index.docker.io/v1/" ]) {
+      docker.withRegistry('https://index.docker.io/v1/', 'Docker-hub')
+        //withDockerRegistry([ credentialsId: "Docker-hub", url: "https://index.docker.io/v1/" ]) {
           // sh 'docker push bhavik0907/multi-client'
           // sh 'docker push bhavik0907/multi-nginx'
           // sh 'docker push bhavik0907/multi-server'
