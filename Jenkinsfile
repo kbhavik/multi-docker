@@ -6,7 +6,6 @@ pipeline {
         script {
           docker.build("bhavik0907/react-test", "-f ./client/Dockerfile.dev ./client")
         }
-
       }
     }
 
@@ -24,12 +23,12 @@ pipeline {
           serverimg = docker.build("bhavik0907/multi-server", "./server")
           workerimg = docker.build("bhavik0907/multi-worker", "./worker")
         }
-
       }
     }
 
     stage('push_images') {
-      docker.withRegistry('https://index.docker.io/v1/', 'Docker-hub') {
+      steps {
+        docker.withRegistry('https://index.docker.io/v1/', 'Docker-hub') {
         //withDockerRegistry([ credentialsId: "Docker-hub", url: "https://index.docker.io/v1/" ]) {
           // sh 'docker push bhavik0907/multi-client'
           // sh 'docker push bhavik0907/multi-nginx'
@@ -39,8 +38,8 @@ pipeline {
           nginximg.push()
           serverimg.push()
           workerimg.push()
+        }
       }
-      
     }
   }
 }
