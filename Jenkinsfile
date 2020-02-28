@@ -19,24 +19,28 @@ pipeline {
     stage('after_success') {
       steps {
         script {
-          docker.build("bhavik0907/multi-client", "./client")
-          docker.build("bhavik0907/multi-nginx", "./nginx")
-          docker.build("bhavik0907/multi-server", "./server")
-          docker.build("bhavik0907/multi-worker", "./worker")
+          clientimg = docker.build("bhavik0907/multi-client", "./client")
+          nginximg = docker.build("bhavik0907/multi-nginx", "./nginx")
+          serverimg = docker.build("bhavik0907/multi-server", "./server")
+          workerimg = docker.build("bhavik0907/multi-worker", "./worker")
         }
 
       }
     }
 
     stage('push_images') {
-      steps {
+      
         withDockerRegistry([ credentialsId: "Docker-hub", url: "https://index.docker.io/v1/" ]) {
-          sh 'docker push bhavik0907/multi-client'
-          sh 'docker push bhavik0907/multi-nginx'
-          sh 'docker push bhavik0907/multi-server'
-          sh 'docker push bhavik0907/multi-worker'
+          // sh 'docker push bhavik0907/multi-client'
+          // sh 'docker push bhavik0907/multi-nginx'
+          // sh 'docker push bhavik0907/multi-server'
+          // sh 'docker push bhavik0907/multi-worker'
+          clientimg.push()
+          nginximg.push()
+          serverimg.push()
+          workerimg.push()
           }
-      }
+      
     }
   }
 }
