@@ -30,17 +30,13 @@ pipeline {
 
     stage('push_images') {
       steps {
-        script {
-          withDockerRegistry([ credentialsId: "Docker-hub", url: "https://index.docker.io/v1/" ]) {
-            sh 'docker push bhavik0907/multi-client'
-            sh 'docker push bhavik0907/multi-nginx'
-            sh 'docker push bhavik0907/multi-server'
-            sh 'docker push bhavik0907/multi-worker'
+        withDockerRegistry([ credentialsId: "Docker-hub", url: "https://index.docker.io/v1/" ]) {
+          sh 'docker push bhavik0907/multi-client'
+          sh 'docker push bhavik0907/multi-nginx'
+          sh 'docker push bhavik0907/multi-server'
+          sh 'docker push bhavik0907/multi-worker'
           }
-        }
-
       }
     }
-
   }
 }
